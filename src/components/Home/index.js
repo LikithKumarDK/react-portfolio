@@ -7,6 +7,7 @@ import './index.scss'
 
 const Home = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
+  const [active, setActive] = useState(true)
 
   const nameArray = ['H', 'i', ',', '', 'I', "'", 'm', '', 'L', 'i', 'k', 'i', 't', 'h', '', 'K', 'u', 'm', 'a', 'r', '', 'D', 'K']
   const jobArray = [
@@ -35,13 +36,17 @@ const Home = () => {
   ]
 
   useEffect(() => {
-    return setTimeout(() => {
+    setTimeout(() => {
       setLetterClass('text-animate-hover')
-    }, 4000)
+    }, 5000)
+    setTimeout(() => {
+      setActive(false)
+    }, 1500);
   }, [])
 
   return (
     <>
+    {!active ? (
       <div className="container home-page">
         <div className="text-zone">
           <h1>
@@ -64,8 +69,9 @@ const Home = () => {
         </div>
         <Logo />
       </div>
-
+    ) : (
       <Loader type="pacman" />
+    )}
     </>
   )
 }
